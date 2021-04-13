@@ -67,4 +67,6 @@ public interface MessageConstant {
     String GET_BUSINESS_REPORT_FAIL = "获取运营统计数据失败";
     String GET_SETMEAL_LIST_SUCCESS = "查询套餐列表数据成功";
     String GET_SETMEAL_LIST_FAIL = "查询套餐列表数据失败";
+    String CHECKITEM_IN_USE = "该检查项正在被使用";
+    String UNKNOWN_ERROR = "发生未知错误，操作失败，请联系管理员";
 }

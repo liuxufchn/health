@@ -6,4 +6,43 @@
     <select id="findAll" resultType="com.shaffer.health.pojo.CheckItem">
         select * from t_checkitem
     </select>
+
+    <select id="findByCondition" resultType="com.shaffer.health.pojo.CheckItem">
+        select * from t_checkitem
+        <if test="_parameter != null and _parameter.length() > 0">
+            where code like #{value} or name like #{value}
+        </if>
+    </select>
+
+    <insert id="add" parameterType="com.shaffer.health.pojo.CheckItem">
+        insert into t_checkitem(code,name,sex,age,price,type,remark,attention)
+        values
+        (#{code},#{name},#{sex},#{age},#{price},#{type},#{remark},#{attention})
+    </insert>
+
+    <select id="findById" resultType="com.shaffer.health.pojo.CheckItem">
+        select * from t_checkitem where id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.shaffer.health.pojo.CheckItem">
+        update t_checkitem
+        set
+        code=#{code},
+        name=#{name},
+        sex=#{sex},
+        age=#{age},
+        price=#{price},
+        type=#{type},
+        remark=#{remark},
+        attention=#{attention}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from t_checkitem where id=#{id}
+    </delete>
+
+    <select id="findCountByCheckItemId" resultType="int" parameterType="int">
+        select count(1) from t_checkgroup_checkitem where checkitem_id=#{id}
+    </select>
 </mapper>
