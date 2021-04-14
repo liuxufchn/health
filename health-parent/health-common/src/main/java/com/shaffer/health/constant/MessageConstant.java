@@ -69,4 +69,5 @@ public interface MessageConstant {
     String GET_SETMEAL_LIST_FAIL = "查询套餐列表数据失败";
     String CHECKITEM_IN_USE = "该检查项正在被使用";
     String UNKNOWN_ERROR = "发生未知错误，操作失败，请联系管理员";
+    String CHECKGROUP_IN_USE = "该检查组正在被使用";
 }

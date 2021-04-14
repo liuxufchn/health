@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shaffer.health.dao.CheckGroupDao">
+    <select id="findByCondition" resultType="com.shaffer.health.pojo.CheckGroup" parameterType="String">
+        select *
+        From t_checkgroup
+        <if test="_parameter != null and _parameter.length > 0">
+            where code like #{value}
+               or name like #{value}
+               or helpCode like #{value}
+        </if>
+    </select>
+
+    <insert id="add" parameterType="com.shaffer.health.pojo.CheckGroup">
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into t_checkgroup (code, name, helpCode, sex, remark, attention)
+        values (#{code}, #{name}, #{helpCode}, #{sex}, #{remark}, #{attention})
+    </insert>
+
+    <insert id="addCheckGroupCheckItem" parameterType="int">
+        insert into t_checkgroup_checkitem (checkgroup_id, checkitem_id)
+        values (#{checkGroupId}, #{checkItemId})
+    </insert>
+
+    <select id="findById" resultType="com.shaffer.health.pojo.CheckGroup" parameterType="int">
+        select *
+        from t_checkgroup
+        where id = #{id}
+    </select>
+
+    <select id="findCheckItemIdsByCheckGroupId" resultType="java.lang.Integer" parameterType="int">
+        select checkitem_id
+        from t_checkgroup_checkitem
+        where checkgroup_id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.shaffer.health.pojo.CheckGroup">
+        update t_checkgroup
+        set code=#{code},
+            name=#{name},
+            helpCode=#{helpCode},
+            sex=#{sex},
+            remark=#{remark},
+            attention=#{attention}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAssociation" parameterType="int">
+        delete from t_checkgroup_checkitem where checkgroup_id=#{id}
+    </delete>
+
+    <select id="findSetMealCountByCheckGroupId" resultType="int" parameterType="int">
+        select count(1) from t_setmeal_checkgroup where checkgroup_id=#{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from t_checkgroup where id=#{id}
+    </delete>
+</mapper>
