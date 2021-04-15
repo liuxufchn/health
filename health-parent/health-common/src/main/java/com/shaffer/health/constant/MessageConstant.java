@@ -70,4 +70,7 @@ public interface MessageConstant {
     String CHECKITEM_IN_USE = "该检查项正在被使用";
     String UNKNOWN_ERROR = "发生未知错误，操作失败，请联系管理员";
     String CHECKGROUP_IN_USE = "该检查组正在被使用";
+    String EDIT_SETMEAL_SUCCESS = "编辑套餐成功";
+    String DELETE_SETMEAL_SUCCESS = "删除套餐成功";
+    String DELETE_SETMEAL_FAIL = "该套餐正在被使用";
 }

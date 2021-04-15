@@ -59,4 +59,8 @@
     <delete id="deleteById">
         delete from t_checkgroup where id=#{id}
     </delete>
+
+    <select id="findAll" resultType="com.shaffer.health.pojo.CheckGroup">
+        select * from t_checkgroup
+    </select>
 </mapper>

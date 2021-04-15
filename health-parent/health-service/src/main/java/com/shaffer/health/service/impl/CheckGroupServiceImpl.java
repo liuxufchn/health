@@ -10,6 +10,7 @@ import com.shaffer.health.entity.QueryPageBean;
 import com.shaffer.health.exception.GlobalException;
 import com.shaffer.health.pojo.CheckGroup;
 import com.shaffer.health.service.CheckGroupService;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -98,5 +99,10 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         checkGroupDao.deleteAssociation(id);
         // 删除检查组
         checkGroupDao.deleteById(id);
+    }
+
+    @Override
+    public List<CheckGroup> findAll() {
+        return checkGroupDao.findAll();
     }
 }
