@@ -14,6 +14,7 @@
         <module>health-interface</module>
         <module>health-service</module>
         <module>health-web</module>
+        <module>health-jobs</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -8,7 +8,6 @@ import com.shaffer.health.entity.Result;
 import com.shaffer.health.pojo.SetMeal;
 import com.shaffer.health.service.SetMealService;
 import com.shaffer.health.utils.QiNiuUtil;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

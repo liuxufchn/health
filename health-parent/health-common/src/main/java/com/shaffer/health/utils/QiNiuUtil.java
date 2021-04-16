@@ -9,12 +9,14 @@ import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.BatchStatus;
 import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.storage.model.FileInfo;
 import com.qiniu.util.Auth;
 import com.shaffer.health.constant.MessageConstant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * @program: health
@@ -24,10 +26,44 @@ import java.util.List;
  */
 public class QiNiuUtil {
 
-    public static final String BUCKET = "health-shaffer";
-    public static final String ACCESSKEYID = "EKkFvrY2_qDAcP4WJ1TH-uD3ROFr5mT-jJJsLEiE";
-    public static final String ACCESSKEYSECRET = "nmgj0MyiwxpfLC0nIttXxlVoWWZM36B1cC1TsIs-";
-    public static final String DOMAIN = "http://qqqpp154u.hn-bkt.clouddn.com/";
+    public static final String BUCKET;
+    public static final String ACCESSKEYID;
+    public static final String ACCESSKEYSECRET;
+    public static final String DOMAIN;
+
+    static {
+        // 初始化配置参数
+        ResourceBundle resource = ResourceBundle.getBundle("qiniu");
+        BUCKET = resource.getString("bucket");
+        ACCESSKEYID = resource.getString("accesskeyid");
+        ACCESSKEYSECRET = resource.getString("accesskeysecret");
+        DOMAIN = resource.getString("domain");
+    }
+
+    /**
+     * 遍历7牛上的所有图片
+     * @return 图片列表
+     */
+    public static List<String> listFile(){
+        BucketManager bucketManager = getBucketManager();
+
+        //每次迭代的长度限制，最大1000，推荐值 1000
+        int limit = 1000;
+
+        //列举空间文件列表, 第一个参数：图片的仓库（空间名）,第二个参数，文件名前缀过滤。“”代理所有
+        BucketManager.FileListIterator fileListIterator = bucketManager.createFileListIterator(BUCKET,"", limit, "");
+        List<String> imageFiles = new ArrayList<>();
+        while (fileListIterator.hasNext()) {
+            //处理获取的file list结果
+            FileInfo[] items = fileListIterator.next();
+            for (FileInfo item : items) {
+                // item.key 文件名
+                imageFiles.add(item.key);
+                System.out.println(item.key);
+            }
+        }
+        return imageFiles;
+    }
 
     /**
      * 批量删除
