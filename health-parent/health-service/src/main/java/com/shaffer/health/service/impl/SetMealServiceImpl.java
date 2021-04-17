@@ -94,6 +94,11 @@ public class SetMealServiceImpl implements SetMealService {
         setMealDao.deleteById(id);
     }
 
+    @Override
+    public List<String> findImgs() {
+        return setMealDao.findImgs();
+    }
+
     private void setAssociation(Integer setMealId, Integer[] checkGroupIds) {
         if (checkGroupIds != null && checkGroupIds.length > 0) {
             for (Integer checkgroupId : checkGroupIds) {

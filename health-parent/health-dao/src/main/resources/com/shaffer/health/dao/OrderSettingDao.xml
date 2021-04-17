@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shaffer.health.dao.OrderSettingDao">
+
+    <select id="findByOrderDate" resultType="com.shaffer.health.pojo.OrderSetting">
+        select * from t_ordersetting where orderDate=#{orderDate,jdbcType=DATE}
+    </select>
+
+    <update id="updateNumber" parameterType="com.shaffer.health.pojo.OrderSetting">
+        update t_ordersetting set number=#{number} where orderDate=#{orderDate,jdbcType=DATE}
+    </update>
+
+    <insert id="add" parameterType="com.shaffer.health.pojo.OrderSetting">
+        insert into t_ordersetting (orderDate,number,reservations)
+        values(#{orderDate},#{number}, #{reservations})
+    </insert>
+
+    <select id="getOrderSettingByMonth" resultType="com.shaffer.health.pojo.OrderSetting" parameterType="hashmap">
+        select * from t_ordersetting where orderDate like #{date}
+    </select>
+</mapper>

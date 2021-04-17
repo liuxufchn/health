@@ -47,11 +47,8 @@ public class QiNiuUtil {
     public static List<String> listFile(){
         BucketManager bucketManager = getBucketManager();
 
-        //每次迭代的长度限制，最大1000，推荐值 1000
-        int limit = 1000;
-
         //列举空间文件列表, 第一个参数：图片的仓库（空间名）,第二个参数，文件名前缀过滤。“”代理所有
-        BucketManager.FileListIterator fileListIterator = bucketManager.createFileListIterator(BUCKET,"", limit, "");
+        BucketManager.FileListIterator fileListIterator = bucketManager.createFileListIterator(BUCKET,"");
         List<String> imageFiles = new ArrayList<>();
         while (fileListIterator.hasNext()) {
             //处理获取的file list结果

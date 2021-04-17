@@ -71,4 +71,10 @@ public interface SetMealDao {
      * @param id 套餐id
      */
     void deleteById(Integer id);
+
+    /**
+     * 查出数据库中所有图片
+     * @return 图片名列表
+     */
+    List<String> findImgs();
 }
