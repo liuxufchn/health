@@ -99,6 +99,16 @@ public class SetMealServiceImpl implements SetMealService {
         return setMealDao.findImgs();
     }
 
+    @Override
+    public List<SetMeal> findAll() {
+        return setMealDao.findAll();
+    }
+
+    @Override
+    public SetMeal findDetailById(int id) {
+        return setMealDao.findDetailById(id);
+    }
+
     private void setAssociation(Integer setMealId, Integer[] checkGroupIds) {
         if (checkGroupIds != null && checkGroupIds.length > 0) {
             for (Integer checkgroupId : checkGroupIds) {

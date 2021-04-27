@@ -77,4 +77,17 @@ public interface SetMealDao {
      * @return 图片名列表
      */
     List<String> findImgs();
+
+    /**
+     * 查询所有
+     * @return 所有套餐数据
+     */
+    List<SetMeal> findAll();
+
+    /**
+     * 查询套餐详情
+     * @param id 套餐id
+     * @return 套餐详情
+     */
+    SetMeal findDetailById(int id);
 }
